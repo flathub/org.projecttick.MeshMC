@@ -8,8 +8,9 @@ sdk-extensions:
 command: meshmc
 finish-args:
   - --share=ipc
-  - --socket=fallback-x11
+  - --socket=x11
   - --socket=wayland
+    # This one needs for some mods to enable support controllers and more.
   - --device=all
     # MeshMC needs network access because download Minecraft from Mojang
   - --share=network
