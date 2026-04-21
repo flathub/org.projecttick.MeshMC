@@ -35,7 +35,7 @@ cleanup:
   - /include
   - /lib/cmake
   - /lib/pkgconfig
-  - "*.a"
+  - '*.a'
   - /bin/xkeystone
   - /mesa-demos
   - /share/man
@@ -120,7 +120,7 @@ modules:
       - /share
     modules:
       - shared-modules/glu/glu-9.json
-  
+
   - name: tomlplusplus
     buildsystem: cmake-ninja
     builddir: true
@@ -130,13 +130,14 @@ modules:
       - -DTOMLPLUSPLUS_BUILD_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604191455/tomlplusplus-v202604191455.tar.gz
-        sha256: 13f30a632877d5417b7bb8c1d6c9cba3e35d095709763d91627f5fa5881f787f
+        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604202324/tomlplusplus-v202604202324.tar.gz
+        sha256: f1079cd3a4aa92426ccbc358e7cab0d6a8d33c69406cb83cece1c3adafe3aac2
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
           version-query: .release_tag
-          url-query: .downloads.tomlplusplus.files[] | select(.name == "tomlplusplus-" + $version + ".tar.gz") | .url
+          url-query: .downloads.tomlplusplus.files[] | select(.name == "tomlplusplus-"
+            + $version + ".tar.gz") | .url
 
   # Main program
   - name: meshmc
@@ -151,7 +152,8 @@ modules:
       - -DMeshMC_STAGING_PLUGINS=ON
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       # Diff for MeshMC: Removed _FORTIFY_SOURCE Macro and this suppress warnings
-      - -DCMAKE_CXX_FLAGS=-pedantic -fstack-protector-strong --param=ssp-buffer-size=4 -O3
+      - -DCMAKE_CXX_FLAGS=-pedantic -fstack-protector-strong --param=ssp-buffer-size=4
+        -O3
       - -DBUILD_TESTING=OFF
     build-options:
       env:
@@ -164,13 +166,14 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604191455/meshmc-v202604191455.tar.gz
-        sha256: cf373dca406bdb71acd695f1a56825ec8085066e275e12de935a2651097b4954
+        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604202324/meshmc-v202604202324.tar.gz
+        sha256: e8fdce402f2b7c2377bc81f9a714607d8bd30b631f9cc0a8c084c9e3b5a78099
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
           version-query: .release_tag
-          url-query: .downloads.meshmc.files[] | select(.name == "meshmc-" + $version + ".tar.gz") | .url
+          url-query: .downloads.meshmc.files[] | select(.name == "meshmc-" + $version
+            + ".tar.gz") | .url
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
       - type: file
