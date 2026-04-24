@@ -130,8 +130,8 @@ modules:
       - -DTOMLPLUSPLUS_BUILD_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604221645/tomlplusplus-v202604221645.tar.gz
-        sha256: 1cc8238094f96da3a4536eee240bc5b6eac4e3d9f24e95e1656c5f2978979f05
+        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604232125/tomlplusplus-v202604232125.tar.gz
+        sha256: fd9507a8185145766a4e93e65ef8228a8cbffc3dd4c0a5d396e41c21b677fd87
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
@@ -166,8 +166,8 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604221645/meshmc-v202604221645.tar.gz
-        sha256: 2cd79116269d24402b81876399927c7438243827504a1566af485b720f275fb5
+        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604232125/meshmc-v202604232125.tar.gz
+        sha256: dda135bc813e1eded7c68e6b46212a78e5b3b96c6d1716ae6c75d3214fd3cf0a
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
