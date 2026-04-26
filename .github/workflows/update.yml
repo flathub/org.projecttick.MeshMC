@@ -1,8 +1,8 @@
 name: Check for updates
 on:
   schedule:
-    - cron: '0 7 * * *' # Run once a day, on Monday, at 07:00
-  workflow_dispatch: {}
+    - cron: '0 * * * *'
+  workflow_dispatch:
 jobs:
   flatpak-external-data-checker:
     runs-on: ubuntu-latest
@@ -16,12 +16,12 @@ jobs:
           ref: ${{ matrix.branch }}
       - uses: docker://ghcr.io/flathub/flatpak-external-data-checker:latest
         env:
-          GIT_AUTHOR_NAME: Flatpak External Data Checker
-          GIT_COMMITTER_NAME: Flatpak External Data Checker
-          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-          EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: Project Tick Bot
+          GIT_COMMITTER_NAME: Project Tick Bot
+          GIT_AUTHOR_EMAIL: bot@projecttick.org
+          GIT_COMMITTER_EMAIL: bot@projecttick.org
+          EMAIL: bot@projecttick.org
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         with:
           args: --update --never-fork --pr-labels="${{ matrix.branch == 'master' && '1. Stable' || '1. Beta' }}" org.projecttick.MeshMC.yml
 
