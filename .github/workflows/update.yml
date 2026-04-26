@@ -23,5 +23,5 @@ jobs:
           EMAIL: bot@projecttick.org
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         with:
-          args: --update --never-fork --pr-labels="${{ matrix.branch == 'master' && '1. Stable' || '1. Beta' }}" org.projecttick.MeshMC.yml
+          args: --update --always-fork --pr-labels="${{ matrix.branch == 'master' && '1. Stable' || '1. Beta' }}" org.projecttick.MeshMC.yml
 
