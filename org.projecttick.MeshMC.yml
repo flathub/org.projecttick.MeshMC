@@ -148,13 +148,13 @@ modules:
       - -DTOMLPLUSPLUS_BUILD_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604271705/tomlplusplus-v202604271705.tar.gz
-        sha256: d4d1e20ebf47eed53b65596c061b612bb7f66b610b02d28022685a31bf91721e
+        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604272058/tomlplusplus-v202604272058.tar.gz
+        sha256: 56cd77ca5ce657199730fa10725753cb0d77f9ec8bfc27820d441307c13f4953
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
-          version-query: .release_tag
-          url-query: .downloads.tomlplusplus.files[] | select(.name == "tomlplusplus-"
+          version-query: .stable.release_tag
+          url-query: .stable.downloads.tomlplusplus.files[] | select(.name == "tomlplusplus-"
             + $version + ".tar.gz") | .url
 
   # Main program
@@ -184,13 +184,13 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604271705/meshmc-v202604271705.tar.gz
-        sha256: dd4599c62c18d206c0fc274fc8465bedafb38688603b16f42cfea46b06410758
+        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604272058/meshmc-v202604272058.tar.gz
+        sha256: 52c73a27224d54c8eba9f5522391e1491c2ddd35c69caede05a1ed498af8a584
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
-          version-query: .release_tag
-          url-query: .downloads.meshmc.files[] | select(.name == "meshmc-" + $version
+          version-query: .stable.release_tag
+          url-query: .stable.downloads.meshmc.files[] | select(.name == "meshmc-" + $version
             + ".tar.gz") | .url
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
