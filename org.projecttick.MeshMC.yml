@@ -148,8 +148,8 @@ modules:
       - -DTOMLPLUSPLUS_BUILD_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604272058/tomlplusplus-v202604272058.tar.gz
-        sha256: 56cd77ca5ce657199730fa10725753cb0d77f9ec8bfc27820d441307c13f4953
+        url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/v202604292150/tomlplusplus-v202604292150.tar.gz
+        sha256: a3f4ca57fb9b75f63a04cb0013abb7ba89a10eeb283888c397eb3822e4577fca
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
@@ -184,14 +184,14 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604272058/meshmc-v202604272058.tar.gz
-        sha256: 52c73a27224d54c8eba9f5522391e1491c2ddd35c69caede05a1ed498af8a584
+        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604292150/meshmc-v202604292150.tar.gz
+        sha256: a046047804d97423ed7c9caa6cf3fc404560ca3d8460b26cf83a5655462f7b94
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
           version-query: .stable.release_tag
-          url-query: .stable.downloads.meshmc.files[] | select(.name == "meshmc-" + $version
-            + ".tar.gz") | .url
+          url-query: .stable.downloads.meshmc.files[] | select(.name == "meshmc-"
+            + $version + ".tar.gz") | .url
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
       - type: file
