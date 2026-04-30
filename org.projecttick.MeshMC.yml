@@ -189,8 +189,8 @@ modules:
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
-          version-query: .stable.release_tag
-          url-query: .stable.downloads.meshmc.files[] | select(.name == "meshmc-"
+          version-query: .beta.release_tag
+          url-query: .beta.downloads.meshmc.files[] | select(.name == "meshmc-"
             + $version + ".tar.gz") | .url
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
