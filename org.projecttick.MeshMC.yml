@@ -184,14 +184,14 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v202604292150/meshmc-v202604292150.tar.gz
-        sha256: a046047804d97423ed7c9caa6cf3fc404560ca3d8460b26cf83a5655462f7b94
+        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/vBETA202604291850/meshmc-vBETA202604291850.tar.gz
+        sha256: 55ef35eb27457a87dc749163360a944052655a98c5238572cb86580ebfe4b38a
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
           version-query: .beta.release_tag
-          url-query: .beta.downloads.meshmc.files[] | select(.name == "meshmc-"
-            + $version + ".tar.gz") | .url
+          url-query: .beta.downloads.meshmc.files[] | select(.name == "meshmc-" +
+            $version + ".tar.gz") | .url
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
       - type: file
