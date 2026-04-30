@@ -1,7 +1,7 @@
 name: Check for updates
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 19 * * 1' # At 19:00 on Monday.
   workflow_dispatch:
 jobs:
   flatpak-external-data-checker:
