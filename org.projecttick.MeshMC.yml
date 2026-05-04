@@ -184,8 +184,8 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/vBETA202605030000/meshmc-vBETA202605030000.tar.gz
-        sha256: 1788dc80be462d1d05f1c568e0e4bccf7d7db799090db31c3b30d05599587a9c
+        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/vBETA202605040000/meshmc-vBETA202605040000.tar.gz
+        sha256: 2dbacf608762ba5b53725bd04b5394d142f0ac2026884b00bf70ba318993a521
         x-checker-data:
           type: json
           url: https://ftp.projecttick.org/Project-Tick/latest.json
