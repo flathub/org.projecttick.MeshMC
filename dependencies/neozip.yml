@@ -1,0 +1,16 @@
+name: neozip
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  - -DZLIB_ENABLE_TESTS=OFF
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/neozip/releases/download/neozip-v10.1.0/neozip-neozip-v10.1.0.tar.gz
+    sha256: f0381e454f567c8bd9ca8741087fa88aae46ef3de464e35741a6739418c2a21c
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.neozip.stable.release_tag
+      url-query: .products.neozip.stable.files[] | select(.name == "neozip-"
+        + $version + ".tar.gz") | .url

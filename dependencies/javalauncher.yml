@@ -1,0 +1,19 @@
+name: javalauncher
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+build-options:
+  env:
+    JAVA_HOME: /usr/lib/sdk/openjdk17/jvm/openjdk-17
+    JAVA_COMPILER: /usr/lib/sdk/openjdk17/jvm/openjdk-17/bin/javac
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/javalauncher/releases/download/javalauncher-v1.0.0/javalauncher-javalauncher-v1.0.0.tar.gz
+    sha256: a1e70ede08b66a031b0182d5b1bb58228ae6789304108254b26a0895e79dec7c
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.javalauncher.stable.release_tag
+      url-query: .products.javalauncher.stable.files[] | select(.name == "javalauncher-"
+        + $version + ".tar.gz") | .url

@@ -1,0 +1,16 @@
+name: libnbtplusplus
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  - -DENABLE_TESTS=OFF
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/libnbtplusplus/releases/download/libnbtplusplus-v3.2/libnbtplusplus-libnbtplusplus-v3.2.tar.gz
+    sha256: bdd0c22ecc9f8d67f71582b0ae21ecb070ff9864e2acdca2683d6fd2bcfaa4e7
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.libnbtplusplus.stable.release_tag
+      url-query: .products.libnbtplusplus.stable.files[] | select(.name == "libnbtplusplus-"
+        + $version + ".tar.gz") | .url
