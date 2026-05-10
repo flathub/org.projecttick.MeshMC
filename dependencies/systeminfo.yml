@@ -1,0 +1,15 @@
+name: systeminfo
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/systeminfo/releases/download/systeminfo-v1.0.0/systeminfo-systeminfo-v1.0.0.tar.gz
+    sha256: 7f34b114f08c055b651d30491df219de30d067954c3f54c019ccf18408eb1fa6
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.systeminfo.stable.release_tag
+      url-query: .products.systeminfo.stable.files[] | select(.name == "systeminfo-"
+        + $version + ".tar.gz") | .url

@@ -1,0 +1,15 @@
+name: classparser
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/classparser/releases/download/classparser-v1.0.0/classparser-classparser-v1.0.0.tar.gz
+    sha256: f057b151d7084860975aa45c96d4e9bc7b9ff34ed25c2be022bfec04c2eac85c
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.classparser.stable.release_tag
+      url-query: .products.classparser.stable.files[] | select(.name == "classparser-"
+        + $version + ".tar.gz") | .url
