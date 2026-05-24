@@ -1,0 +1,15 @@
+name: optional-bare
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/optional-bare/releases/download/optional-bare-v1.0.0/optional-bare-optional-bare-v1.0.0.tar.gz
+    sha256: 58a5871d2e99e5005c3544c6abe796f873a8862990f6e2951fd25aeab513906e
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products["optional-bare"].stable.release_tag
+      url-query: .products["optional-bare"].stable.files[] | select(.name == "optional-bare-"
+        + $version + ".tar.gz") | .url

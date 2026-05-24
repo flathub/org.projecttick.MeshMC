@@ -1,0 +1,15 @@
+name: katabasis
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/katabasis/releases/download/katabasis-v1.0.0/katabasis-katabasis-v1.0.0.tar.gz
+    sha256: dd082129c8bea028679061aaa8e4441d5931698b707a5a0c472480d26fe922d7
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.katabasis.stable.release_tag
+      url-query: .products.katabasis.stable.files[] | select(.name == "katabasis-"
+        + $version + ".tar.gz") | .url
