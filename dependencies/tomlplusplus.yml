@@ -1,0 +1,17 @@
+name: tomlplusplus
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  - -DTOMLPLUSPLUS_BUILD_TESTS=OFF
+  - -DTOMLPLUSPLUS_BUILD_EXAMPLES=OFF
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/tomlplusplus/releases/download/tomlplusplus-v10.0.3/tomlplusplus-tomlplusplus-v10.0.3.tar.gz
+    sha256: 94f3c92737e99e837a3fbdac9104769d3c6fae4101e6a2d45b4ee9ed571c44bf
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.tomlplusplus.stable.release_tag
+      url-query: .products.tomlplusplus.stable.files[] | select(.name == "tomlplusplus-"
+        + $version + ".tar.gz") | .url

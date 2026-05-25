@@ -1,0 +1,15 @@
+name: iconfix
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/iconfix/releases/download/iconfix-v1.0.0/iconfix-iconfix-v1.0.0.tar.gz
+    sha256: 4b06487eaaefd70aef31497a54d7ff7f0fdf24e82db19eed7ccb296f359866f5
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.iconfix.stable.release_tag
+      url-query: .products.iconfix.stable.files[] | select(.name == "iconfix-"
+        + $version + ".tar.gz") | .url

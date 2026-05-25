@@ -1,0 +1,15 @@
+name: ganalytics
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/ganalytics/releases/download/ganalytics-v1.0.0/ganalytics-ganalytics-v1.0.0.tar.gz
+    sha256: c1412b07e947c774863ef99a379e2609dbb229266cbf7da93ff21e7c271cadf5
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.ganalytics.stable.release_tag
+      url-query: .products.ganalytics.stable.files[] | select(.name == "ganalytics-"
+        + $version + ".tar.gz") | .url

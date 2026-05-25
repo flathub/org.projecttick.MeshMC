@@ -1,0 +1,15 @@
+name: xz-embedded
+buildsystem: cmake
+builddir: true
+config-opts:
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+sources:
+  - type: archive
+    url: https://ftp.projecttick.org/Project-Tick/xz-embedded/releases/download/xzembedded-v1.0.0/xz-embedded-xzembedded-v1.0.0.tar.gz
+    sha256: 9385dd30da22b6dfc8e7be0882290ae2dd387256688e522552b2d7d503368075
+    x-checker-data:
+      type: json
+      url: https://ftp.projecttick.org/Project-Tick/latest.json
+      version-query: .products.xzembedded.stable.release_tag
+      url-query: .products.xzembedded.stable.files[] | select(.name == "xz-embedded-"
+        + $version + ".tar.gz") | .url
