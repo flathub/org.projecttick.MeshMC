@@ -6,11 +6,11 @@ config-opts:
   - -DENABLE_TESTS=OFF
 sources:
   - type: archive
-    url: https://ftp.projecttick.org/Project-Tick/cmark/releases/download/cmark-v0.31.2/cmark-cmark-v0.31.2.tar.gz
-    sha256: f966e660158a05e1a81eb34913f41c7a41f7a7323935e86a57e8a4f8158506ec
+    url: https://ftp.projecttick.org/Project-Tick/cmark/releases/download/v202605032242/cmark-v202605032242.tar.gz
+    sha256: fee72b5be99228a1dd0b8febb0dea600c0b57dc7e737ebd9868c8b7cef1d60bb
     x-checker-data:
       type: json
       url: https://ftp.projecttick.org/Project-Tick/latest.json
       version-query: .products.cmark.stable.release_tag
-      url-query: .products.cmark.stable.files[] | select(.name == "cmark-"
-        + $version + ".tar.gz") | .url
+      url-query: .products.cmark.stable.files[] | select(.name == "cmark-" + $version
+        + ".tar.gz") | .url
