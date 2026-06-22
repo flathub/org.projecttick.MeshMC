@@ -82,7 +82,7 @@ modules:
       # This allows us to manage and update Java independently of this Flatpak
       - -DMeshMC_DISABLE_JAVA_DOWNLOADER=OFF
       # This allows to build MeshMC in tree plugins
-      - -DMeshMC_PLUGINS=ON
+      - -DMeshMC_PLUGINS=OFF
       - -DMeshMC_STAGING_PLUGINS=OFF
       - -DMeshMC_PLUGIN_SIGNATURES=OFF
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
