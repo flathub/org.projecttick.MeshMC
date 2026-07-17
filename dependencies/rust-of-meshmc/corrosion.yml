@@ -1,0 +1,9 @@
+name: corrosion
+buildsystem: cmake
+config-opts:
+  - -DINSTALL_RUST_COMPILER=OFF
+  - -DCMAKE_BUILD_TYPE=Release
+sources:
+  - type: git
+    url: https://github.com/corrosion-rs/corrosion.git
+    tag: v0.6.1
