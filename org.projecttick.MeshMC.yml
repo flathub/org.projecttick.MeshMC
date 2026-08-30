@@ -1,6 +1,6 @@
 id: org.projecttick.MeshMC
 runtime: org.kde.Platform
-runtime-version: '6.10'
+runtime-version: '6.11'
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk17
@@ -60,21 +60,7 @@ modules:
   - modules/glxinfo.yml
   - modules/gamemode.yml
 
-  # Project Tick Projects - MeshMC dependencies.
-  - dependencies/neozip.yml
   - dependencies/cmark.yml
-  - dependencies/libnbtplusplus.yml
-  - dependencies/optional-bare.yml
-  - dependencies/xz-embedded.yml
-  - dependencies/systeminfo.yml
-  - dependencies/ganalytics.yml
-  - dependencies/rainbow.yml
-  - dependencies/iconfix.yml
-  - dependencies/localpeer.yml
-  - dependencies/classparser.yml
-  - dependencies/katabasis.yml
-  - dependencies/javacheck.yml
-  - dependencies/javalauncher.yml
   - dependencies/tomlplusplus.yml
   - dependencies/rust-of-meshmc/corrosion.yml
 
@@ -96,10 +82,10 @@ modules:
       - -DCMAKE_CXX_FLAGS=-pedantic -fstack-protector-strong --param=ssp-buffer-size=4
         -O3
       - -DBUILD_TESTING=OFF
-      # Ensure RUNTIME_DEPENDENCY_SET / GET_RUNTIME_DEPENDENCIES can locate
-      # in-tree shared libs (libnbt++, neozip, rainbow, iconfix, ...) installed
-      # to /app/lib by the previous modules.
-      - -DCMAKE_PREFIX_PATH=/app
+    build-options:
+      env:
+        JAVA_HOME: /usr/lib/sdk/openjdk17/jvm/openjdk-17
+        JAVA_COMPILER: /usr/lib/sdk/openjdk17/jvm/openjdk-17/bin/javac
     post-install:
       - install -Dm755 ../prime-run /app/bin/prime-run
       - mv /app/bin/meshmc /app/bin/meshmcrun
@@ -107,14 +93,14 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://ftp.projecttick.org/Project-Tick/meshmc/releases/download/v8.2.0/meshmc-v8.2.0.tar.gz
-        sha256: 438b256d49b869ea96e4068a612818fd27e72472137f006142a031f0e42ccfe5
+        url: https://github.com/Project-Tick/MeshMC/releases/download/v9.0.0/MeshMC-v9.0.0.tar.gz
+        sha256: 681cb753f6676de85a7a26c4a1dfd9efd2f726e6e30d59fda03649cd047f7f92
         x-checker-data:
           type: json
-          url: https://ftp.projecttick.org/Project-Tick/latest.json
-          version-query: .products.meshmc.stable.release_tag
-          url-query: .products.meshmc.stable.files[] | select(.name == "meshmc-" +
-            $version + ".tar.gz") | .url
+          url: https://api.github.com/repos/Project-Tick/MeshMC/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name == "MeshMC-" + $version + ".tar.gz")
+            | .browser_download_url
 
       # This json file was added so that crates, which are normally
       # downloaded from the internet, can be found without an internet
