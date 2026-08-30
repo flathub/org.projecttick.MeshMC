@@ -1,16 +1,14 @@
 name: cmark
-buildsystem: cmake
+buildsystem: cmake-ninja
 builddir: true
 config-opts:
-  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-  - -DENABLE_TESTS=OFF
+  - -DCMAKE_TESTS=OFF
 sources:
   - type: archive
-    url: https://ftp.projecttick.org/Project-Tick/cmark/releases/download/cmark-v0.31.2/cmark-cmark-v0.31.2.tar.gz
-    sha256: f966e660158a05e1a81eb34913f41c7a41f7a7323935e86a57e8a4f8158506ec
+    url: https://github.com/commonmark/cmark/archive/0.31.2.tar.gz
+    sha256: f9bc5ca38bcb0b727f0056100fac4d743e768872e3bacec7746de28f5700d697
     x-checker-data:
-      type: json
-      url: https://ftp.projecttick.org/Project-Tick/latest.json
-      version-query: .products.cmark.stable.release_tag
-      url-query: .products.cmark.stable.files[] | select(.name == "cmark-"
-        + $version + ".tar.gz") | .url
+      type: anitya
+      project-id: 9159
+      stable-only: true
+      url-template: https://github.com/commonmark/cmark/archive/$version.tar.gz
