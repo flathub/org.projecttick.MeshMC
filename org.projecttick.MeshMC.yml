@@ -4,10 +4,6 @@ runtime-version: '6.11'
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk17
-  - org.freedesktop.Sdk.Extension.rust-stable
-
-build-options:
-  append-path: /usr/lib/sdk/rust-stable/bin
 
 command: meshmc
 finish-args:
@@ -62,7 +58,6 @@ modules:
 
   - dependencies/cmark.yml
   - dependencies/tomlplusplus.yml
-  - dependencies/rust-of-meshmc/corrosion.yml
 
   # Main program
   - name: meshmc
@@ -93,30 +88,14 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://github.com/Project-Tick/MeshMC/releases/download/v9.0.0/MeshMC-v9.0.0.tar.gz
-        sha256: 681cb753f6676de85a7a26c4a1dfd9efd2f726e6e30d59fda03649cd047f7f92
+        url: https://github.com/Project-Tick/MeshMC/releases/download/v10.0.0/MeshMC-v10.0.0.tar.gz
+        sha256: 55d39602c4be115511ebda9c0a83d859c61168f536cb0175c492f2e8d229a235
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Project-Tick/MeshMC/releases/latest
           version-query: .tag_name
           url-query: .assets[] | select(.name == "MeshMC-" + $version + ".tar.gz")
             | .browser_download_url
-
-      # This json file was added so that crates, which are normally
-      # downloaded from the internet, can be found without an internet
-      # connection.
-      - dependencies/rust-of-meshmc/meshmc-cargo-sources.json
-
-      # Config added to ensure externally imported crates work smoothly.
-      - type: inline
-        dest: .cargo
-        dest-filename: config.toml
-        contents: |
-          [source.crates-io]
-          replace-with = "flatpak-vendor"
-          
-          [source.flatpak-vendor]
-          directory = "cargo/vendor"
 
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
