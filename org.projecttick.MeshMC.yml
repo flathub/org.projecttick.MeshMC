@@ -88,8 +88,8 @@ modules:
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
       - type: archive
-        url: https://github.com/Project-Tick/MeshMC/releases/download/v10.0.0/MeshMC-v10.0.0.tar.gz
-        sha256: 55d39602c4be115511ebda9c0a83d859c61168f536cb0175c492f2e8d229a235
+        url: https://github.com/Project-Tick/MeshMC/releases/download/v11.0.2/MeshMC-v11.0.2.tar.gz
+        sha256: 7e4179af3c54848dd578fa3155967d872ab5919720bdc975a0d1a631051a5c5b
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Project-Tick/MeshMC/releases/latest
