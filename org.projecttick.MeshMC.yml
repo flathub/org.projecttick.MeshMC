@@ -1,6 +1,7 @@
 id: org.projecttick.MeshMC
 runtime: org.kde.Platform
-runtime-version: '6.11'
+# TODO: Update here when MeshMC is ported to Qt6
+runtime-version: '5.15-25.08'
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk17
@@ -28,9 +29,6 @@ finish-args:
     # Userspace visibility for transparent hugepages configuration
     # Required for -XX:+UseTransparentHugePages
   - --filesystem=/sys/kernel/mm/transparent_hugepage:ro
-    # Apply java for MeshMC installation
-  - --env=JAVA_HOME=/usr/lib/sdk/openjdk17/jvm/openjdk-17
-  - --env=PATH=/usr/lib/sdk/openjdk17/jvm/openjdk-17/bin:/app/bin:/usr/bin
 cleanup:
   - /include
   - /lib/cmake
@@ -56,47 +54,22 @@ modules:
   - modules/glxinfo.yml
   - modules/gamemode.yml
 
-  - dependencies/cmark.yml
-  - dependencies/tomlplusplus.yml
-
   # Main program
   - name: meshmc
-    buildsystem: cmake
+    buildsystem: simple
     builddir: true
-    config-opts:
-      - -DMeshMC_BUILD_PLATFORM=flatpak
-      # This allows us to manage and update Java independently of this Flatpak
-      - -DMeshMC_DISABLE_JAVA_DOWNLOADER=OFF
-      # This allows to build MeshMC in tree plugins
-      - -DMeshMC_PLUGINS=ON
-      - -DMeshMC_STAGING_PLUGINS=OFF
-      - -DMeshMC_UNLEASH_APP_NAME=Flatpak
-      - -DMeshMC_PLUGIN_SIGNATURES=OFF
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      # Diff for MeshMC: Removed _FORTIFY_SOURCE Macro and this suppress warnings
-      - -DCMAKE_CXX_FLAGS=-pedantic -fstack-protector-strong --param=ssp-buffer-size=4
-        -O3
-      - -DBUILD_TESTING=OFF
-    build-options:
-      env:
-        JAVA_HOME: /usr/lib/sdk/openjdk17/jvm/openjdk-17
-        JAVA_COMPILER: /usr/lib/sdk/openjdk17/jvm/openjdk-17/bin/javac
-    post-install:
-      - install -Dm755 ../prime-run /app/bin/prime-run
-      - mv /app/bin/meshmc /app/bin/meshmcrun
-      - install -Dm755 ../meshmc /app/bin/meshmc
+    build-commands:
+      - install -Dm755 prime-run /app/bin/prime-run
+      - install -Dm755 meshmc /app/bin/meshmc
+      - install -Dm644 branding/org.projecttick.MeshMC.desktop -t ${FLATPAK_DEST}/share/applications
+      - install -Dm644 branding/org.projecttick.MeshMC_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/org.projecttick.MeshMC.png
+      - install -Dm644 branding/org.projecttick.MeshMC.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
-      - type: archive
-        url: https://github.com/Project-Tick/MeshMC/releases/download/v11.0.2/MeshMC-v11.0.2.tar.gz
-        sha256: 7e4179af3c54848dd578fa3155967d872ab5919720bdc975a0d1a631051a5c5b
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/Project-Tick/MeshMC/releases/latest
-          version-query: .tag_name
-          url-query: .assets[] | select(.name == "MeshMC-" + $version + ".tar.gz")
-            | .browser_download_url
-
+      - type: git
+        url: https://github.com/Project-Tick/MeshMC.git
+        commit: b7d7ea7a7ef66b6768786ab32ae826601e4cfd17
+        disable-submodules: true
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
       - type: file
