@@ -59,17 +59,15 @@ modules:
     buildsystem: simple
     builddir: true
     build-commands:
+      - make -j$FLATPAK_BUILDER_N_JOBS PREFIX=/app install
+      - mv /app/bin/meshmc /app/bin/meshmcrun
       - install -Dm755 prime-run /app/bin/prime-run
       - install -Dm755 meshmc /app/bin/meshmc
-      - install -Dm644 branding/org.projecttick.MeshMC.desktop -t ${FLATPAK_DEST}/share/applications
-      - install -Dm644 branding/org.projecttick.MeshMC_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/org.projecttick.MeshMC.png
-      - install -Dm644 branding/org.projecttick.MeshMC.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
       - /usr/lib/sdk/openjdk17/installjdk.sh
     sources:
-      - type: git
-        url: https://github.com/Project-Tick/MeshMC.git
-        commit: b7d7ea7a7ef66b6768786ab32ae826601e4cfd17
-        disable-submodules: true
+      - type: archive
+        url: https://github.com/Project-Tick/Packaging/releases/download/2.0/meshmc-wrapper-2.0.tar.gz
+        sha256: e0817bc520d3f663e3b905ab6298e3a0fa1fd12499ad3c3bc45550e3c0d780cc
       # Required for running Minecraft on NVIDIA Optimus systems.
       # Will be integrated directly into the launcher in the future.
       - type: file
