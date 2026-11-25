@@ -1,6 +1,4 @@
 #!/bin/bash
-INSTDIR="${XDG_DATA_HOME-$HOME/.local/share}/MeshMC-App"
-PACKAGE="MeshMC-Qt5-Linux-x86_64-v12.0.tar.gz"
 
 # discord RPC
 for i in {0..9}; do
@@ -10,25 +8,4 @@ done
 export PATH="${PATH}${PATH:+:}/usr/lib/extensions/vulkan/gamescope/bin:/usr/lib/extensions/vulkan/MangoHud/bin"
 export VK_LAYER_PATH="/usr/lib/extensions/vulkan/share/vulkan/implicit_layer.d/"
 
-deploy() {
-    mkdir -p $INSTDIR
-    cd ${INSTDIR}
-
-    wget --progress=dot:force "https://github.com/Project-Tick/MeshMC/releases/download/v12.0/${PACKAGE}" 2>&1 | sed -u 's/.* \([0-9]\+%\)\ \+\([0-9.]\+.\) \(.*\)/\1\n# Downloading at \2\/s, ETA \3/' | zenity --progress --auto-close --auto-kill --title="Downloading MeshMC..."
-
-    tar -xzf ${PACKAGE} --transform='s,MeshMC/,,'
-    rm ${PACKAGE}
-    chmod +x MeshMC
-}
-
-runmmc() {
-    cd ${INSTDIR}
-    exec ./MeshMC "$@"
-}
-
-if [[ ! -f ${INSTDIR}/MeshMC ]]; then
-    deploy
-    runmmc "$@"
-else
-    runmmc "$@"
-fi
+exec /app/bin/meshmcrun "$@"
